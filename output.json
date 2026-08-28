@@ -1,0 +1,154 @@
+{
+  "clients": [
+    {
+      "id": "client-1",
+      "name": "Hungry Birds",
+      "address": "12 High Street, Manchester",
+      "phone": "0161 000 0001",
+      "email": "hungrybirdsmcr@gmail.com",
+      "platforms": "just_eat,uber_eats,deliveroo",
+      "jeCommission": 14,
+      "ueCommission": 30,
+      "delCommission": 14,
+      "createdAt": "2026-05-31T10:59:51.239Z",
+      "updatedAt": "2026-05-31T10:59:51.239Z"
+    },
+    {
+      "id": "client-2",
+      "name": "Tasty Buns",
+      "address": "45 Market Street, Leeds",
+      "phone": "0113 000 0002",
+      "email": "tastybuns@gmail.com",
+      "platforms": "just_eat,uber_eats,deliveroo",
+      "jeCommission": 14,
+      "ueCommission": 30,
+      "delCommission": 14,
+      "createdAt": "2026-05-31T10:59:52.941Z",
+      "updatedAt": "2026-05-31T10:59:52.941Z"
+    },
+    {
+      "id": "client-3",
+      "name": "Herbies Kitchen",
+      "address": "8 Church Road, Birmingham",
+      "phone": "0121 000 0003",
+      "email": "herbies@gmail.com",
+      "platforms": "just_eat,uber_eats,deliveroo",
+      "jeCommission": 14,
+      "ueCommission": 30,
+      "delCommission": 14,
+      "createdAt": "2026-05-31T10:59:54.425Z",
+      "updatedAt": "2026-05-31T10:59:54.425Z"
+    },
+    {
+      "id": "client-4",
+      "name": "Andromeda Grill",
+      "address": "22 Broad Lane, Sheffield",
+      "phone": "0114 000 0004",
+      "email": "andromeda@gmail.com",
+      "platforms": "just_eat,uber_eats,deliveroo",
+      "jeCommission": 14,
+      "ueCommission": 30,
+      "delCommission": 14,
+      "createdAt": "2026-05-31T10:59:57.309Z",
+      "updatedAt": "2026-05-31T10:59:57.309Z"
+    },
+    {
+      "id": "client-5",
+      "name": "Spice Garden",
+      "address": "67 Victoria Ave, Liverpool",
+      "phone": "0151 000 0005",
+      "email": "spicegarden@gmail.com",
+      "platforms": "just_eat,uber_eats,deliveroo",
+      "jeCommission": 14,
+      "ueCommission": 30,
+      "delCommission": 14,
+      "createdAt": "2026-05-31T10:59:59.477Z",
+      "updatedAt": "2026-05-31T10:59:59.477Z"
+    },
+    {
+      "id": "cmpv4dvik0000vdj089wl6zmf",
+      "name": "Henley on Thames",
+      "address": "Henley on Thames, UK",
+      "phone": null,
+      "email": "henley@example.com",
+      "platforms": "just_eat,uber_eats,deliveroo",
+      "jeCommission": 14,
+      "ueCommission": 30,
+      "delCommission": 14,
+      "createdAt": "2026-06-01T11:23:05.803Z",
+      "updatedAt": "2026-06-01T11:23:05.803Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "cmpto44pl0000uxjwr8tnmygs",
+      "email": "admin@riznex.com",
+      "password": "$2a$10$ceXKgKAvslWYtUcfDfOPJ.awuFeOzHYy7BGKqTLWjmCWI5gogOAVG",
+      "name": "Riznex Admin",
+      "role": "admin",
+      "clientId": null,
+      "createdAt": "2026-05-31T10:59:51.130Z",
+      "updatedAt": "2026-05-31T10:59:51.130Z"
+    },
+    {
+      "id": "cmpto44y30002uxjw4hb9dlls",
+      "email": "hungrybirdsmcr@gmail.com",
+      "password": "$2a$10$8MjVOcSGvUKjVB24tQzUWO27xM0NYQw9BOD5ZxcpGJFZ6oaBNXoMO",
+      "name": "Hungry Birds",
+      "role": "client",
+      "clientId": "client-1",
+      "createdAt": "2026-05-31T10:59:51.435Z",
+      "updatedAt": "2026-05-31T10:59:51.435Z"
+    },
+    {
+      "id": "cmpto469l000ouxjwyidzvfqb",
+      "email": "tastybuns@gmail.com",
+      "password": "$2a$10$423LjXuaM17CS99YTKsQZOa59QOpruPERibOgUWvvpp/C35geIr6i",
+      "name": "Tasty Buns",
+      "role": "client",
+      "clientId": "client-2",
+      "createdAt": "2026-05-31T10:59:53.146Z",
+      "updatedAt": "2026-05-31T10:59:53.146Z"
+    },
+    {
+      "id": "cmpto47fi001auxjw0ogfmiw7",
+      "email": "herbies@gmail.com",
+      "password": "$2a$10$aFJonaAOVElTfEKgTDB0ROQP1tcxzgHD7dswwsHJYubP14ycre2vi",
+      "name": "Herbies Kitchen",
+      "role": "client",
+      "clientId": "client-3",
+      "createdAt": "2026-05-31T10:59:54.654Z",
+      "updatedAt": "2026-05-31T10:59:54.654Z"
+    },
+    {
+      "id": "cmpto49mg001wuxjw1kvrwl49",
+      "email": "andromeda@gmail.com",
+      "password": "$2a$10$6SIk9UGVMldDbRrykJ0qPuup9WRD7HbdO4BrFiv823H7jaBZ6q5sS",
+      "name": "Andromeda Grill",
+      "role": "client",
+      "clientId": "client-4",
+      "createdAt": "2026-05-31T10:59:57.496Z",
+      "updatedAt": "2026-05-31T10:59:57.496Z"
+    },
+    {
+      "id": "cmpto4bav002iuxjw2y8628bw",
+      "email": "spicegarden@gmail.com",
+      "password": "$2a$10$CRwuo8hYopJnCLk06Qyny..Z9eVBRDxRgflFIDNEGQrfPaEV0ayDi",
+      "name": "Spice Garden",
+      "role": "client",
+      "clientId": "client-5",
+      "createdAt": "2026-05-31T10:59:59.672Z",
+      "updatedAt": "2026-05-31T10:59:59.672Z"
+    },
+    {
+      "id": "cmpv4dvjg0002vdj0g8yn0cor",
+      "email": "henley@example.com",
+      "password": "$2a$10$iKRl6DOZFl/XQnzebdRF0.vyi5Cq4ZcXKimfnCLO3NkcjpVB7eOFq",
+      "name": "Henley on Thames Admin",
+      "role": "client",
+      "clientId": "cmpv4dvik0000vdj089wl6zmf",
+      "createdAt": "2026-06-01T11:23:05.835Z",
+      "updatedAt": "2026-08-05T18:59:02.673Z"
+    }
+  ]
+}

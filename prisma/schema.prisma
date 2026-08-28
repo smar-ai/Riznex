@@ -1,0 +1,184 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("client") // "admin" | "client"
+  clientId  String?
+  client    Client?  @relation(fields: [clientId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Client {
+  id          String   @id @default(cuid())
+  name        String
+  address     String?
+  phone       String?
+  email       String?
+  platforms   String   @default("just_eat,uber_eats,deliveroo") // comma-separated
+  jeCommission   Float @default(14.0)
+  ueCommission   Float @default(30.0)
+  delCommission  Float @default(14.0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  sales       Sale[]
+  expenses    Expense[]
+  suppliers   Supplier[]
+  users       User[]
+  invoices    Invoice[]
+  staff       Staff[]
+  staffWages  StaffWage[]
+  stocks      Stock[]
+}
+
+model Sale {
+  id          String   @id @default(cuid())
+  clientId    String
+  client      Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  platform    String   // "just_eat" | "uber_eats" | "deliveroo" | "walk_in" | "cash"
+  store       String   @default("Combined") // "Combined" | "Herbies Pizza" | "Tasty Bun"
+  weekStart   DateTime
+  weekEnd     DateTime
+  totalOrders Int      @default(0)
+  customers   Int      @default(0)
+  grossSales  Float    @default(0)
+  commission  Float    @default(0)
+  vat         Float    @default(0)
+  adminFee    Float    @default(0)
+  topRankFee  Float    @default(0)
+  refunds     Float    @default(0)
+  cashOrders  Float    @default(0)
+  otherFees   Float    @default(0)
+  netPaid     Float    @default(0)
+  // Uber Eats extended fields
+  marketing       Float @default(0)
+  offersOnItems   Float @default(0)
+  offerRedemptionFee Float @default(0)
+  adSpends        Float @default(0)
+  adCredits       Float @default(0)
+  vatRoundingAdj  Float @default(0)
+  otherPayments   Float @default(0)
+  notes       String?
+  invoiceId   String?
+  invoice     Invoice? @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  is2025      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Expense {
+  id          String   @id @default(cuid())
+  clientId    String
+  client      Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  category    String   // "wages" | "electricity" | "gas" | "water" | "internet" | "fuel" | "rent" | "tax" | "misc"
+  subcategory String?  // staff name, utility type, etc.
+  store       String   @default("Combined")
+  amount      Float
+  period      String   // "weekly" | "monthly"
+  date        DateTime
+  notes       String?
+  invoiceId   String?
+  invoice     Invoice? @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  is2025      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Staff {
+  id        String   @id @default(cuid())
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  name      String
+  role      String?
+  hourlyRate Float?
+  weeklyWage Float?
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  wages     StaffWage[]
+}
+
+model StaffWage {
+  id          String   @id @default(cuid())
+  clientId    String
+  client      Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  staffId     String
+  staff       Staff    @relation(fields: [staffId], references: [id], onDelete: Cascade)
+  weekEnd     DateTime
+  amount      Float
+  store       String   @default("Combined")
+  invoiceId   String?
+  invoice     Invoice? @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  is2025      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Supplier {
+  id        String    @id @default(cuid())
+  clientId  String
+  client    Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  name      String
+  category  String?   // "food" | "packaging" | "cleaning" | "equipment" | "other"
+  contact   String?
+  franchise String    @default("Combined")
+  active    Boolean   @default(true)
+  invoices  Invoice[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Invoice {
+  id           String    @id @default(cuid())
+  clientId     String
+  client       Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  supplierId   String?
+  supplier     Supplier? @relation(fields: [supplierId], references: [id])
+  type         String    // "platform" | "supplier" | "expense"
+  platform     String?   // for platform invoices
+  fileName     String
+  filePath     String
+  fileType     String    // "pdf" | "image"
+  fileHash     String?   // SHA-256 hash of the uploaded file
+  amount       Float?
+  invoiceDate  DateTime?
+  ocrStatus    String    @default("pending") // "pending" | "processing" | "done" | "error"
+  ocrData      String?   // JSON string of extracted data
+  notes        String?
+  sourceInvoiceId String?
+  sourceInvoice   Invoice?  @relation("GeneratedInvoices", fields: [sourceInvoiceId], references: [id], onDelete: Cascade)
+  generatedInvoices Invoice[] @relation("GeneratedInvoices")
+  sales        Sale[]
+  expenses     Expense[]
+  staffWages   StaffWage[]
+  is2025       Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Stock {
+  id          String   @id @default(cuid())
+  clientId    String
+  client      Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  weekEnd     DateTime
+  value       Float
+  franchise   String   @default("Combined")
+  notes       String?
+  is2025      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

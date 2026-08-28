@@ -1,0 +1,1 @@
+import { PrismaClient } from '@prisma/client'; const prisma = new PrismaClient(); async function main() { const exps = await prisma.expense.findMany({ where: { period: 'template' } }); console.log(exps.map(e => ({ sub: e.subcategory, clientId: e.clientId }))); } main().catch(console.error).finally(() => prisma.$disconnect());
