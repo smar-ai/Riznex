@@ -55,7 +55,7 @@ function InvoicesContent() {
   }, [searchParams])
   
   // Form State
-  const [type, setType] = useState('supplier')
+  const [type, setType] = useState<string>('supplier')
   const [supplierId, setSupplierId] = useState('')
   const [platformName, setPlatformName] = useState('Hungry Birds Deliveroo')
   const [posName, setPosName] = useState('Walk-in Card')
@@ -162,8 +162,6 @@ function InvoicesContent() {
         Array.from(files).forEach(file => formData.append('file', file))
         formData.append('type', type)
         if (currentClientId) formData.append('clientId', currentClientId)
-        if (type === 'platform' && platformName) formData.append('platform', platformName)
-        if (type === 'pos' && posName) formData.append('platform', posName)
 
         const res = await fetch('/api/invoices', { method: 'POST', body: formData })
         setUploadProgress('Extracting data via Gemini...')

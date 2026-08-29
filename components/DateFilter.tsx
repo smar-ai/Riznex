@@ -7,6 +7,7 @@ export interface DateFilterState {
   year?: any
   month?: any
   week?: any
+  is2025?: boolean
 }
 
 export function defaultDateFilter(): DateFilterState {

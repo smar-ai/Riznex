@@ -105,7 +105,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "No orders found in the document using the regex pattern." }, { status: 400 });
     }
 
-    const clientId = session.user.role === 'admin' ? 'client-1' : session.user.clientId;
+    const clientId = session.user.role === 'admin' ? 'client-1' : (session.user.clientId as string);
 
     // Upsert into Sales table
     let processedWeeks = 0;

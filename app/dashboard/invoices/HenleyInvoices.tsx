@@ -326,7 +326,7 @@ function InvoicesContent({ is2025 = false }: { is2025?: boolean }) {
             <div className="w-[1px] h-5 bg-[#1f2947] hidden sm:block"></div>
 
             <button 
-              onClick={() => { setFilter(defaultDateFilter()); setStoreFilter(''); setStatusFilter(''); setSearchQuery(''); }} 
+              onClick={() => { setFilter(defaultDateFilter()); setStoreFilter(''); setStatusFilter(''); }} 
               className="text-slate-400 hover:text-white hover:bg-[#1f2947]/50 px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>

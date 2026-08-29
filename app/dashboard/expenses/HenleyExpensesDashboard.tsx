@@ -79,7 +79,7 @@ export function HenleyExpensesDashboard() {
     if (!session) return
     setLoading(true)
     const params = new URLSearchParams()
-    params.set('clientId', session?.user?.role === 'admin' ? 'cmpv4dvik0000vdj089wl6zmf' : session?.user?.clientId)
+    params.set('clientId', session?.user?.role === 'admin' ? 'cmpv4dvik0000vdj089wl6zmf' : (session?.user?.clientId || ''))
     if (filter.from) params.set('from', filter.from)
     if (filter.to)   params.set('to',   filter.to)
     // fetch all non-template records (backend excludes template by default)
