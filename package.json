@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
-  },
+  ,"prisma":{"seed":"npx tsx prisma/seed.ts"}},
   "dependencies": {
     "@prisma/client": "^6.0.0",
     "@supabase/supabase-js": "^2.112.4",
@@ -25,7 +25,7 @@
     "recharts": "^2.15.0",
     "tesseract.js": "^5.1.1",
     "xlsx": "^0.18.5"
-  },
+  ,"prisma":{"seed":"npx tsx prisma/seed.ts"}},
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/bcryptjs": "^2.4.6",
@@ -40,5 +40,5 @@
     "prisma": "^6.0.0",
     "tailwindcss": "^4",
     "typescript": "^5"
-  }
-}
+  ,"prisma":{"seed":"npx tsx prisma/seed.ts"}}
+,"prisma":{"seed":"npx tsx prisma/seed.ts"}}
