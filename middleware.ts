@@ -11,8 +11,8 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Public routes
-  if (pathname === '/login') {
-    if (token) {
+  if (pathname === '/' || pathname === '/login' || pathname === '/client-login') {
+    if (token && pathname === '/login') {
       // Already logged in — redirect to appropriate dashboard
       const role = (token as any).role
       if (role === 'admin') {
@@ -47,5 +47,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|uploads).*)'],
+  matcher: ['/((?!_next/static|_next/image|images|favicon.ico|uploads).*)'],
 }
